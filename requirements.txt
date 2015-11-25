@@ -1,0 +1,7 @@
+cronus==0.2
+easygui==0.97.4
+matplotlib==1.4.3
+numpy==1.10.1
+pandas==0.16.2
+wget==2.2
+xlrd==0.9.4
