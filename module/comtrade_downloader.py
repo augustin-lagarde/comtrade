@@ -7,6 +7,16 @@ import sys
 import gc
 
 def downloader():
+
+        print("\n\n\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
+        print(" Option 1: Download data from UN ComTrade ")
+        print("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
+
+        print("\nFor this option, you will have to:\n\
+        Specify the level of aggregation wanted for the commodity data\n\
+        Specify the first and last year to be downloaded")
+        print("\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
+        
         # Choose the aggregate level: 2-digit/4-digit/6-digit
         valid_choices = ["AG2", "AG4", "AG6"]
         AG = None
@@ -50,12 +60,13 @@ def downloader():
 
                         print '\ndownloading', year, ctry['country'], '...'
                         myfn = os.path.join(dl_path,"comtrade_EXtoWorld_%s_%s.csv" % (str(ctry['iso3']), str(year)))
-                        print 'Saving file in', myfn, '...'
-                        ctry_code = ctry['ctyCode']
-                        file_url = 'http://comtrade.un.org/api/get?max=50000&type=C&freq=A&cc=%s&px=HS&ps=%s&r=%s&p=0&rg=2&fmt=csv' % (str(AG), year, str(ctry_code))
                         if (os.path.exists(myfn) == True):
                                 i += 1
                                 continue
+
+                        print 'Saving file in', myfn, '...'
+                        ctry_code = ctry['ctyCode']
+                        file_url = 'http://comtrade.un.org/api/get?max=50000&type=C&freq=A&cc=%s&px=HS&ps=%s&r=%s&p=0&rg=2&fmt=csv' % (str(AG), year, str(ctry_code))
                         
                         try:
                                 file_name = wget.download(file_url, out = myfn)
@@ -63,6 +74,43 @@ def downloader():
                                 print 'error for ', ctry['country']
                                 error_list[ctry_code]
 
+                        i += 1
+                        beat.sleep()
+
+
+                # Redownload instantly the files with errors
+
+                print 'Check for errors', '...'
+                i = 0
+                j = 0
+                beat.set_rate(0.027) # 100req/hour = 0.027req/s * 3600s/h
+
+                while beat.true():
+                        try:
+                                ctry = ctrys.iloc[i]
+                        except:
+                                print '\nRedownload of %d files completed' % i
+                                break
+
+                        myfn = os.path.join(dl_path,"comtrade_EXtoWorld_%s_%s.csv" % (str(ctry['iso3']), str(year)))
+                        size = os.path.getsize(myfn)
+                        if not (size == 36):
+                                i += 1
+                                j = i - 1
+                                continue
+                        print '\nReplacing', year, ctry['country'], '...'
+                        os.remove(myfn)
+                        print 'Saving file in', myfn, '...'
+                        ctry_code = ctry['ctyCode']
+                        file_url = 'http://comtrade.un.org/api/get?max=50000&type=C&freq=A&cc=%s&px=HS&ps=%s&r=%s&p=0&rg=2&fmt=csv' % (str(AG), year, str(ctry_code))
+                        
+                        try:
+                                file_name = wget.download(file_url, out = myfn)
+                        except:
+                                print 'error for ', ctry['country']
+                        size = os.path.getsize(myfn)
+                        if (size == 36):
+                                i -= 1   
                         i += 1
                         beat.sleep()
 
@@ -111,4 +159,5 @@ def downloader():
                 print '\nSaving files in', fdest, '...'
                 print("\nThe report DeletedFiles_%s.csv contains the information on the files that were empty and have been deleted.") % str(cat4[0])
 
-
+        print '\nOperation complete.'
+        raw_input("\nPress Enter to continue...")

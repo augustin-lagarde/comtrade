@@ -4,8 +4,13 @@ import os
 import sys
 
 def concat_by_year_together():
-    print("\nThis module concatenates all the files in the folder 'yearly' under 'data' for the selected aggregated level. \nBe sure that there are no unwanted files in the folder.")
+    print("\n\n\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
+    print(" Option 3: Merging several years together ")
+    print("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
 
+    print("\nThis module concatenates all the files in the folder 'yearly' under 'data' for the selected aggregated level. \nBe sure that there are no unwanted files in the folder.")
+    print("\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
+    
     choice = None
     valid_choices = ['y','q']
     while choice not in valid_choices:
@@ -15,8 +20,8 @@ def concat_by_year_together():
         AG = None
         valid_choices = ["AG2", "AG4", "AG6"]
         while AG not in valid_choices:
-            AG = raw_input("Choose the levels of aggregation for commodities [AG2, AG4, AG6]: ")
-        path = os.path.join('raw','yearly',AG,'*.csv')
+            AG = raw_input("\nChoose the levels of aggregation for commodities [AG2, AG4, AG6]: ")
+        path = os.path.join('data','yearly',AG,'*.csv')
         allFiles = glob.glob(path) 
         frame = pd.DataFrame()
 
@@ -33,9 +38,11 @@ def concat_by_year_together():
             os.makedirs(dest)
         filename = 'ExtoWorld_%s.csv' % str(AG)
         file_dest = os.path.join(dest, filename)
+        print '\nSaving the file to %s' % str(file_dest)
         frame.to_csv(file_dest, sep=',')
 
-
+        print '\nOperation complete.'
+        raw_input("\nPress Enter to continue...")
 
 
 

@@ -90,7 +90,21 @@ It will install a bunch of stuff. Don't worry if it is long. **It will take appr
 
 # Running the application
 
-On the root of the 'comtrade' folder, just double-click on 'run.py'. The application will start.
+1. To run the application, as earlier, navigate with the command prompt to the 'comtrade' folder:
+    + Write the letter of the drive where the 'comtrade' folder is stored followed by a colon (In my case it is "R:")
+    + Press [Enter]
+    + Write "cd", [space] and right-click on the prompt to paste the path copied earlier (*Hint: Ctrl+V doesn't work in the prompt*)
+    + Press [Enter]. Like that:
+
+![cd](pictures/cd.png)
+
+2. Now you will run the script:
+    + Input "python run.py"
+    + Press [Enter]. It should look like that:
+
+![cd](pictures/run.png)
+
+The application should have started and you can see the menu.
 
 ## Option 1: download from UN ComTrade
 
@@ -144,8 +158,11 @@ This little function will ask you where is the file you downloaded from UN Servi
 
 [This option has been abandonned as the implementation of PCA in R is more often used as is the lasso regression model that we wanted to use for our analysis]
 
+## Option 6: perform the Proximity matrix
 
-## Option 6: exit programme
+[This option is currently being implemented]
+
+## Option 7: exit programme
 
 Simply exit the program.
 
@@ -153,11 +170,11 @@ Simply exit the program.
 
 # Limitations and specifications in the code
 
-Due to download limitations the ComTrade allow you to extract as follow:
+Due to download limitations the ComTrade downloader allow you to extract as follow:
 
-- Year: 2000 - 2014
-- Trade Flow : Export
-- Reporter : All
+- Year: From 1962 to 2014
+- Trade Flow : Export only
+- Reporter : Each individual country available
 - Partner : World
-- Commodities : AG2, AG4, AG6
+- Commodities : AG2, AG4 or AG6 levels
 

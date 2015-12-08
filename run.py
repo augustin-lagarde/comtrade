@@ -1,23 +1,27 @@
 import module
 
 def menu():
-
+    print("\n\n\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
+    print(" WELCOME TO THE MENU ")
+    print("= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
     #user chooses a number from list
-    print("Choose a number to continue:\t\n\
+    print("\nChoose a number to continue:\t\n\
     Select 1 to download from UN ComTrade\n\
     Select 2 to concatenate files from a specific year (request step 1 first)\n\
     Select 3 to merge several years together (request step 2 first)\n\
-    Select 4 to download from UN ServiceTrade\n\
-    Select 5 to perform the PCA analysis\n\
-    Select 6 to exit the program")
+    Select 4 to clean and import data from UN ServiceTrade\n\
+    Select 5 to prepare the data for the PCA\n\
+    Select 6 to transform the data into a proximity matrix\n\
+    Select 7 to exit the program")
+    print("\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
+    print("\n\nCopyright Bruegel 2015. Program written by Augustin Lagarde.\n\n")
+
 
 def main():
-    print("\nWelcome, this little program has been written by Augustin Lagarde.\n\
-    It is here to help you deal with UN ComTrade data\n")
     menu()
     choice= int(input("Enter menu choice:\t"))
 
-    while choice != 6:
+    while choice != 7:
         #get choice from user
         if choice == 1:
             #download data from ComTrade
@@ -32,11 +36,15 @@ def main():
         elif choice == 4:
             module.service_downloader()
         elif choice == 5:
-            #start the PCA
+            #prepare the data for the PCA
             module.PCA()
+        elif choice == 6:
+            #Transform the data into a proximity matrix
+            module.GPS()
+
 
         menu()
-        choice = int(input("\nEnter menu choice:\t"))
+        choice = int(input("\n\nEnter menu choice:\t"))
 
     print("\nApplication Complete")
 
