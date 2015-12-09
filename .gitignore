@@ -1,11 +1,7 @@
-data/database/*
-data/dl/*
-data/GPS/*
-data/PCA/*
-data/macroeconomic/*
-data/service/*
-data/yearly/*
-installation/*
-PCA/*
+!/data
+/data/*
+!/data/add_res
+installation/
+PCA/
 Thumbs.db
 .Rhistory
