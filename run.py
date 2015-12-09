@@ -14,7 +14,7 @@ def menu():
     Select 6 to transform the data into a proximity matrix\n\
     Select 7 to exit the program")
     print("\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
-    print("\n\nCopyright Bruegel 2015. Program written by Augustin Lagarde.\n\n")
+    print("\n\nCopyright Bruegel 2015. Programme written by Augustin Lagarde.\n\n")
 
 
 def main():
