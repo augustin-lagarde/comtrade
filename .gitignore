@@ -1,4 +1,3 @@
-installation/
 data/database/
 data/dl/
 data/GPS/
@@ -6,5 +5,8 @@ data/PCA/
 data/macroeconomic/
 data/service/
 data/yearly/
+documentation/some_litterature/
+installation/
 PCA/
 Thumbs.db
+.Rhistory
