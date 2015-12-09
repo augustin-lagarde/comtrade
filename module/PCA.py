@@ -103,15 +103,15 @@ def PCA():
     # Save the file to a CSV
 
     print "Merging the data", "..." 
-    df3 = df1.append(df2, ignore_index = True)
-    df3['SingularCode'] = df3['Type'] + df3['Code'].map(str)
+    data = df1.append(df2, ignore_index = True)
+    data['SingularCode'] = data['Type'] + data['Code'].map(str)
     path3 = os.path.join('pca','database_%s_%s.csv' % (str(year_s), str(year_e)))
-    df3.to_csv(path3, sep = ",", index=False)
+    data.to_csv(path3, sep = ",", index=False)
 
     # Average the data over the years
 
     print "Averaging the data over the available years","..." 
-    df3 = df3.groupby(['Reporter ISO','SingularCode'], as_index=False).mean()
+    data = data.groupby(['Reporter ISO','SingularCode'], as_index=False).mean()
     
     # Also by summing and dividing by the range we can
     # consider that an absence of data is zero
@@ -126,8 +126,8 @@ def PCA():
     # Select only the 3 columns of interest
     # Spread the trade into columns
     # Replace NA with 0
-    df = df3[['Reporter ISO', 'SingularCode', 'Value']]
-    data = df.pivot(index='SingularCode', columns='Reporter ISO', values='Value')
+    data = data[['Reporter ISO', 'SingularCode', 'Value']]
+    data = data.pivot(index='SingularCode', columns='Reporter ISO', values='Value')
     data = data.fillna(0)
 
     # Creating RCA as Share in country's exports / share in world exports
