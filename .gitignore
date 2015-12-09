@@ -1,8 +1,9 @@
 installation/
+data/database/
 data/dl/
+data/GPS/
 data/macroeconomic/
 data/service/
 data/yearly/
-data/GPS/
 PCA/
 Thumbs.db
