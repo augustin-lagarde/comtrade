@@ -110,7 +110,7 @@ def PCA():
     print "Merging the data", "..." 
     data = df1.append(df2, ignore_index = True)
     data['SingularCode'] = data['Type'] + data['Code'].map(str)
-    path3 = os.path.join(dest,'database_%s_%s.csv' % (str(year_s), str(year_e)))
+    path3 = os.path.join(dest,'database_%s_%s_%s.csv' % (str(AG), str(year_s), str(year_e)))
     data.to_csv(path3, sep = ",", index=False)
 
     # Average the data over the years
