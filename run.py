@@ -10,7 +10,7 @@ def menu():
     Select 2 to concatenate files from a specific year (request step 1 first)\n\
     Select 3 to merge several years together (request step 2 first)\n\
     Select 4 to clean and import data from UN ServiceTrade\n\
-    Select 5 to prepare the data for the PCA\n\
+    Select 5 to calculate the RCA\n\
     Select 6 to transform the data into a proximity matrix\n\
     Select 7 to exit the program")
     print("\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ")
